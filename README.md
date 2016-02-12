@@ -4,7 +4,7 @@ This is a simple application to get acquainted with [SVG fePointLight](https://w
 
 ![version 1.0][logo]
 
-[logo]: https://github.com/AlexanderKozhevin/betterMe/blob/gh-pages/screen.gif?raw=true "Version 1.0"
+[logo]: https://raw.githubusercontent.com/AlexanderKozhevin/svg-fePointLight/gh-pages/screen.gif "Version 1.0"
 
 
 Here is a live **[demo](https://github.com/AlexanderKozhevin/svg-fePointLight)**

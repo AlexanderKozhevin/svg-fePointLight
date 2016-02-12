@@ -1,8 +1,13 @@
 # SVG fePointLight
 
-This is a simple application to get acquainted with [SVG Convolve Matrix filter](https://www.w3.org/TR/SVG/filters.html#feConvolveMatrixElement).
+This is a simple application to get acquainted with [SVG fePointLight](https://www.w3.org/TR/SVG/filters.html#fePointLightElement).
 
-Here is a live **[demo](https://github.com/AlexanderKozhevin/svg-convolution-matrix)**
+![version 1.0][logo]
+
+[logo]: https://github.com/AlexanderKozhevin/betterMe/blob/gh-pages/screen.gif?raw=true "Version 1.0"
+
+
+Here is a live **[demo](https://github.com/AlexanderKozhevin/svg-fePointLight)**
 
 As also you can run it locally via *gulp-connect*.
 
@@ -18,19 +23,3 @@ npm install
 gulp
 ```
 Page will be available on *localhost:8080*.
-
-
-
----
-
-*feConvolveMatrix* has number of different properties.
-
-1. order
-2. kernelMatrix
-3. divisor
-4. bias
-5. edgeMode
-
-and some default ones.
-
-In this demo only first 2 of them are manipulated.

@@ -2,6 +2,9 @@
 <head>
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="libs/mdColorPicker.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 <body ng-app="BlankApp" ng-cloak>
 
@@ -12,6 +15,9 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
 
+  <script src="libs/tinycolor-min.js"></script>
+  <script src="libs/mdColorPicker.min.js"></script>
+
 
   <script src="app.js"></script>
 
@@ -20,48 +26,88 @@
   <div class="main_scope" ng-controller="AppCtrl" layout="row" layout-fill>
     <div class="left_scope" flex="50" layout="column"  layout-align="start center">
 
+      <div class="left_scope-data">
 
-      <div class="md-title">
-        <a href="https://github.com/AlexanderKozhevin/svg-convolution-matrix">
-          SVG FeConvolveMatrix
-        </a>
+        <div class="md-title">
+          <a href="https://github.com/AlexanderKozhevin/svg-fePointLight">
+            SVG FePointLight
+          </a>
+        </div>
+
+        <div layout="row" class="block1">
+
+          <md-card flex>
+           <md-card-title>
+             <md-card-title-text>
+               <span class="md-headline">Light position</span>
+             </md-card-title-text>
+           </md-card-title>
+           <md-card-content>
+            <span class="md-subheader">X Axis</span>
+            <md-slider  md-discrete ng-model="data.x" step="1" min="-50" max="350" aria-label="rating"></md-slider>
+            <span class="md-subheader">Y Axis</span>
+            <md-slider  md-discrete ng-model="data.y" step="1" min="-50" max="250" aria-label="rating"></md-slider>
+            <span class="md-subheader">Z Axis</span>
+            <md-slider  md-discrete ng-model="data.z" step="1" min="1" max="500" aria-label="rating"></md-slider>
+           </md-card-content>
+         </md-card>
+
+         <md-card flex>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">FeSpecularLighting</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+           <span class="md-subheader">SurfaceScale </span>
+           <md-slider  md-discrete ng-model="data.surface" step="1" min="0" max="40" aria-label="rating"></md-slider>
+           <span class="md-subheader">SpecularConstant </span>
+           <md-slider  md-discrete ng-model="data.constant" step="1" min="1" max="10" aria-label="rating"></md-slider>
+           <span class="md-subheader">SpecularExponent </span>
+           <md-slider  md-discrete ng-model="data.exp" step="1" min="1" max="128" aria-label="rating"></md-slider>
+          </md-card-content>
+        </md-card>
+
+        </div>
+
+
+      <div layout="row" class="block1">
+          <md-card flex >
+           <md-card-title style='max-height:50px;'>
+             <md-card-title-text>
+               <span class="md-headline">FeGaussianBlur</span>
+             </md-card-title-text>
+           </md-card-title>
+           <md-card-content >
+            <span class="md-subheader">stdDeviation</span>
+            <md-slider  md-discrete ng-model="data.blur" step="1" min="1" max="100" aria-label="rating"></md-slider>
+           </md-card-content>
+         </md-card>
+         <md-card flex>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">Color</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+          <div md-color-picker ng-model="data.square" label="Rectangle color" random="true" open-on-input="true"></div>
+           <div md-color-picker ng-model="data.light" label="Light color" random="true" open-on-input="true"></div>
+          </md-card-content>
+        </md-card>
+       </div>
+
       </div>
 
-      <div layout="row" class="left_scope-selectors" layout-align="center start">
-        <!-- X-label selector -->
-        <md-input-container>
-          <label>X Axis</label>
-          <md-select ng-model="axis.x" ng-change="init_values()">
-            <md-option ng-repeat="one in select" ng-value="one">
-              {{one}}
-            </md-option>
-          </md-select>
-        </md-input-container>
 
-        <!-- Y-label selector -->
-        <md-input-container>
-          <label>Y Axis</label>
-          <md-select ng-model="axis.y" ng-change="init_values()">
-            <md-option ng-repeat="one in select" ng-value="one">
-              {{one}}
-            </md-option>
-          </md-select>
-        </md-input-container>
-      </div>
-
-      <!-- Box with inputs -->
-      <div layout="column">
-          <div ng-repeat="line in array_y" >
-            <input class="element-item" ng-repeat="item in array_x" ng-model="values[$parent.$index][$index]" />
-          </div>
-      </div>
 
 
     </div>
 
-    <!-- Right block with image itself -->
+
     <div class="right_scope" flex="50" layout="column"  layout-align="start center" layout-fill>
-        <photo-matrix flex class="right_scope-photo"  ng-model="values"></photo-matrix>
+
+      <light-element ng-model="data"></light-element>
+
     </div>
 
   </div>

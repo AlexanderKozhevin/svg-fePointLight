@@ -1,34 +1,42 @@
-var app = angular.module('BlankApp', ['ngMaterial']);
+var app = angular.module('BlankApp', ['ngMaterial', 'mdColorPicker']);
 
 
 //
 // Main directive which takes data and set proper values in svg filter
 //
-app.directive('photoMatrix', function ($compile) {
+app.directive('lightElement', function ($compile) {
     return {
         restrict: 'E',
         templateUrl: 'filter.svg',
         require: 'ngModel',
         link: function (scope, element, attrs, ngModel) {
 
-          var temp = element[0].querySelector('#matrixer');
-          var matrix = angular.element(temp)
+          var temp = element[0].querySelector('#light');
+          var light = angular.element(temp)
+
+          var temp = element[0].querySelector('#gauss');
+          var gauss = angular.element(temp)
+
+          var temp = element[0].querySelector('#source');
+          var source = angular.element(temp)
+
+          var temp = element[0].querySelector('#rectobject');
+          var rect = angular.element(temp)
 
 
-          scope.init = function() {
-            scope.ylen = ngModel.$viewValue.length
-            scope.xlen = ngModel.$viewValue[0].length
-            scope.value = ""
+          scope.init = function(){
+            light.attr("x", ngModel.$viewValue.x);
+            light.attr("y", ngModel.$viewValue.y);
+            light.attr("z", ngModel.$viewValue.z);
 
-            for (var i=0; i<scope.ylen; i++){
-              for (var j=0; j<scope.xlen; j++){
-                scope.value += ngModel.$viewValue[i][j]
-                scope.value += " "
-              }
-            }
-            scope.dimer = scope.xlen.toString() + ',' + scope.ylen.toString()
-            matrix.attr("order", scope.dimer);
-            matrix.attr("kernelMatrix", scope.value);
+            source.attr("surfaceScale", ngModel.$viewValue.surface);
+            source.attr("specularConstant", ngModel.$viewValue.constant);
+            source.attr("specularExponent", ngModel.$viewValue.exp);
+
+            source.attr("lighting-color", ngModel.$viewValue.light);
+            rect.attr("fill", ngModel.$viewValue.square);
+
+            gauss.attr("stdDeviation", ngModel.$viewValue.blur);
 
 
           }
@@ -51,38 +59,17 @@ app.directive('photoMatrix', function ($compile) {
 
 
 app.controller('AppCtrl', function($scope, $timeout){
-  // Matrix size options
-  $scope.select = [1,2,3,4,5,6,7,8,9]
 
-  $scope.axis = {
-    x: 3,
-    y: 3
+  $scope.data = {
+    x: 150,
+    y: 100,
+    z: 200,
+    surface: 6,
+    constant: 1,
+    exp: 30,
+    blur: 20,
+    light: "rgba(255,255,255,1)",
+    square: "rgba(0,0,0,1)"
   }
-
-  $scope.init_values = function(){
-    $scope.values = []
-    for(var y = 0; y < $scope.axis.y; y++){
-      $scope.values[y] = [];
-      for(var x = 0; x < $scope.axis.x; x++){
-        $scope.values[y][x] = -1;
-        if ((x==1) && (y==1)){
-          $scope.values[y][x] = 9
-        }
-      }
-    }
-
-    $scope.array_x = []
-    $scope.array_y = []
-
-    for (var i=0; i<$scope.axis.x; i++){
-      $scope.array_x[i] = i
-    }
-    for (var i=0; i<$scope.axis.y; i++){
-      $scope.array_y[i] = i
-    }
-
-  }
-
-  $scope.init_values()
 
 })

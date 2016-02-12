@@ -7,7 +7,7 @@ This is a simple application to get acquainted with [SVG fePointLight](https://w
 [logo]: https://raw.githubusercontent.com/AlexanderKozhevin/svg-fePointLight/gh-pages/screen.gif "Version 1.0"
 
 
-Here is a live **[demo](https://github.com/AlexanderKozhevin/svg-fePointLight)**
+Here is a live **[demo](http://alexanderkozhevin.github.io/svg-fePointLight)**
 
 As also you can run it locally via *gulp-connect*.
 

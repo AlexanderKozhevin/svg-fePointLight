@@ -1,4 +1,4 @@
-# SVG FeConvolveMatrix
+# SVG fePointLight
 
 This is a simple application to get acquainted with [SVG Convolve Matrix filter](https://www.w3.org/TR/SVG/filters.html#feConvolveMatrixElement).
 
